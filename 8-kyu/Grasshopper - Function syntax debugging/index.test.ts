@@ -1,6 +1,6 @@
 import { main } from './index';
 
 test('should concat two lines', () => {
-    expect('take ', 'item').toBe('take item');
-    expect('use ', 'sword').toBe('use sword');
+    expect(main('take ', 'item')).toBe('take item');
+    expect(main('use ', 'sword')).toBe('use sword');
 })
