@@ -1,0 +1,1 @@
+export const square = (arg: number): number => arg ** 2;
