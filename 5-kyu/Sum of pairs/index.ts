@@ -1,17 +1,14 @@
 export function sumPairs(ints: number[], s: number): [number, number] | void {
-    const resArray = [];
-    for (let i = 1; i < ints.length; i++) {
-        const target = s - ints[i - 1];
-        const index = ints.slice(i).indexOf(target);
-        if (index !== -1) {
-            if (resArray.length === 0) {
-                resArray.push(i - 1, index + i)
-            } else if (Math.max(resArray[0], resArray[1]) > Math.max(i - 1, index + i)) {
-                resArray[0] = i - 1;
-                resArray[1] = index + i;
-                break;
-            }
+    if (ints[0] + ints[1] === s) {
+        return [ints[0], ints[1]];
+    }
+
+    for (let i = 0; i < ints.length; i++) {
+        const target = s - ints[i];
+        const indexOne = ints.slice(0, i + 1).indexOf(target);
+        const indexTwo = ints.slice(indexOne + 1, i + 2).indexOf(s - target);
+        if (indexOne !== -1 && indexTwo !== -1) {
+            return [ints[indexOne], ints[indexTwo + indexOne + 1]];
         }
     }
-    return resArray.length === 0 ? undefined : [ints[resArray[0]], ints[resArray[1]]];
 }
